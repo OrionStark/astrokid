@@ -28,8 +28,10 @@ import { StarsSelectionComponent } from './stars-selection/stars-selection.compo
 import { HumanTechnologyComponent } from './human-technology/human-technology.component';
 import { SplashExploreComponent } from './splash-explore/splash-explore.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
+import { RegStarsDialogComponent } from './reg-stars-dialog/reg-stars-dialog.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { FinalRegistrationComponent } from './final-registration/final-registration.component';
+
+// Material Design Modul
 
 const appRoutes:Routes = [
   { path: '', component: WelcomePageComponent },
@@ -41,8 +43,7 @@ const appRoutes:Routes = [
   { path: 'humantechnology', component: HumanTechnologyComponent, data: { state: 'humantechnology' } },
   { path: 'exploration' , component: SplashExploreComponent, data: { state: 'exploration' }},
   { path: 'loading', component: LoadingScreenComponent, data: { state: 'loading' } },
-  { path: 'dashboard', component: DashboardPageComponent, data: { state: 'dashboard' } },
-  { path: 'final_regsitration', component: FinalRegistrationComponent, data: { state: 'final_registration' } }
+  { path: 'dashboard', component: DashboardPageComponent, data: { state: 'dashboard' } }
 ];
 
 @NgModule({
@@ -58,8 +59,7 @@ const appRoutes:Routes = [
     HumanTechnologyComponent,
     SplashExploreComponent,
     LoadingScreenComponent,
-    DashboardPageComponent,
-    FinalRegistrationComponent
+    DashboardPageComponent
   ],
   imports: [
     RouterModule.forRoot(
