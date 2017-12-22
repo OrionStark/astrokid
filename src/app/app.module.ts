@@ -28,7 +28,6 @@ import { StarsSelectionComponent } from './stars-selection/stars-selection.compo
 import { HumanTechnologyComponent } from './human-technology/human-technology.component';
 import { SplashExploreComponent } from './splash-explore/splash-explore.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
-import { RegStarsDialogComponent } from './reg-stars-dialog/reg-stars-dialog.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
 // Material Design Modul
