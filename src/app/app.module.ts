@@ -1,9 +1,12 @@
 import { MnFullpageModule } from 'ngx-fullpage';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { UsersService } from './data-component/users/users.service';
 
 // Bootstrap Javascript Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -71,9 +74,12 @@ const appRoutes:Routes = [
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    MnFullpageModule.forRoot()
+    MnFullpageModule.forRoot(),
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

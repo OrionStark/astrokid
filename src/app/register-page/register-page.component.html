@@ -6,11 +6,11 @@
                 <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
             </div>
             <span class="brand">ASTROKID</span>
-            <form action="/starsselect">
-                    <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
-                    <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nama">
-                    <input type="text" id="email" class="fadeIn second" name="email" placeholder="E-mail">
-                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+            <form (ngSubmit)="register()">
+                    <input [(ngModel)]="userModel.username" type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
+                    <input [(ngModel)]="userModel.name" type="text" id="name" class="fadeIn second" name="name" placeholder="Nama">
+                    <input [(ngModel)]="userModel.email" type="text" id="email" class="fadeIn second" name="email" placeholder="E-mail">
+                    <input [(ngModel)]="userModel.password" type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
                     <input type="submit" class="fadeIn fourth" value="Next">
             </form>
             <div id="formFooter">
