@@ -7,10 +7,12 @@
             </div>
             <span class="brand">ASTROKID</span>
             <p>Explore with your self</p>
-            <form action="">
-                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
-                    <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
-                    <input type="submit" class="fadeIn fourth" value="Log In">
+            <form [formGroup]="myForm" (ngSubmit)="login(myForm.value)">
+                    <input formControlName="username" type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
+                    <div class="alert" *ngIf="!myForm.controls['username'].valid && myForm.controls['username'].touched">Username is required</div>
+                    <input formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+                    <div class="alert" *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched">Password is required and have to be 6 long char at least</div>
+                    <input type="submit" [disabled]="!myForm.valid" class="fadeIn fourth" value="Log In">
             </form>
             <div id="formFooter">
                 <a routerLink="/" class="underlineHover" href="#">Cancel</a><br>

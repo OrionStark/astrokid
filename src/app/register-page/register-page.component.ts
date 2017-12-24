@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { UsersService } from '../data-component/users/users.service';
 import { Router } from '@angular/router';
-import { error } from 'util';
 
 @Component({
   selector: 'app-register-page',

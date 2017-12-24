@@ -75,7 +75,8 @@ const appRoutes:Routes = [
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     MnFullpageModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService

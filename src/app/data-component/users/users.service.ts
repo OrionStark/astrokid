@@ -10,4 +10,7 @@ export class UsersService {
   create(user: User) {
     return this.http.post('http://localhost:4322/users/register', user);
   }
+  login(user: User) {
+    return this.http.post('http://localhost:4322/user/login', user);
+  }
 }

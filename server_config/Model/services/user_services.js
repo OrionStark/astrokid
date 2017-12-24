@@ -38,17 +38,14 @@ function register(data) {
     return holdRes.promise;
 };
 
-var login = (data) => {
+function login(data) {
     var holdRes = q.defer()
     dbConnection((db) => {
         db.collection('user')
             .findOne({ username: data.username, password: data.password }, (err, res) => {
                 if (err) holdRes.reject(err.message);
                 if (!res) {
-                    holdRes.resolve({
-                        login_status: "FAILED",
-                        message: "Invalid password, please try again"
-                    });
+                    holdRes.reject("Username and password are not valid");
                 } else {
                     holdRes.resolve({
                         login_status: "SUCCESS",
