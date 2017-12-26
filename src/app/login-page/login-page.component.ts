@@ -24,6 +24,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('userdata') != null) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   login(data) {
@@ -36,11 +39,17 @@ export class LoginPageComponent implements OnInit {
     this.user_services.login(this.data)
       .subscribe(
         data => {
-          console.log(data);
-          this.router.navigate(['/dashboard']);
+          var user_data = JSON.parse(data.text());
+          if (user_data.login_status === "FAILED") {
+            console.log(user_data);
+          } else {
+            this.user_services.setUserLogedIn();
+            this.user_services.setUserData(JSON.parse(data.text()));
+            localStorage.setItem('userdata', data.text());
+            this.router.navigate(['/dashboard']);
+          }
         },
         error => {
-          console.log(error);
           this.router.navigate(['/']);
         }
       );

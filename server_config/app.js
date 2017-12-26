@@ -9,14 +9,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended" : false}));
 
-
-// Response handling
-let responses = {
-    status: 200,
-    data: [],
-    message: null
-};
-
 let server = app.listen(4322, () => {
     let port = server.address().port;
     console.log("Server started on " + port.toString());

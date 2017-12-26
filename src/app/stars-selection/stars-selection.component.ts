@@ -6,6 +6,9 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { Router } from '@angular/router';
+import { UsersService } from '../data-component/users/users.service';
+import { ConstellationsService } from '../data-component/constellations/constellations.service'
 import * as $ from 'jquery';
 declare var particlesJS: any;
 
@@ -38,7 +41,8 @@ declare var particlesJS: any;
 export class StarsSelectionComponent implements OnInit {
   private textIndicator: String;
   private navIndicator: String;
-  constructor(public el: ElementRef) {
+  private constellations_data: any;
+  constructor(public el: ElementRef, private router: Router, private constellations: ConstellationsService, private users: UsersService) {
     this.textIndicator = 'text_show';
     this.navIndicator = 'nav_fixed';
   }
@@ -54,9 +58,36 @@ export class StarsSelectionComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.constellations.getAllConstellations()
+      .subscribe(
+        data => {
+          this.constellations_data = JSON.parse(data.text());
+          console.log(this.constellations_data);
+          console.log(this.users.getUserData());
+        },
+        error => {
+          console.log("There's an error");
+        }
+      );
+    if (localStorage.getItem('userdata') != null) {
+      this.router.navigate(['dashboard']);
+    }
     particlesJS.load('particles-js', '../../assets/json/particles.json', function() {
       console.log('callback - particles.js config loaded');
     });
+
+  }
+
+  clickedConstellations(index) {
+    var buffdata = this.users.getUserData();
+    buffdata.constellation = this.constellations_data[index]._id;
+    this.users.create(buffdata)
+      .subscribe(
+        data => {
+          this.users.setUserData(null);
+          this.router.navigate(['login']);
+        }
+      )
   }
 
 }

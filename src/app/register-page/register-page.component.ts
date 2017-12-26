@@ -14,19 +14,15 @@ export class RegisterPageComponent implements OnInit {
   constructor(private router: Router,private http:Http, private user_services: UsersService) { }
 
   ngOnInit() {
+    if (localStorage.getItem('userdata') != null) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   register() {
-    this.user_services.create(this.userModel)
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-          console.log(error);
-          this.router.navigate(['/404']);
-        }
-      );
+    this.userModel.savePoint = 0;
+    this.user_services.setUserData(this.userModel);
+    this.router.navigate(['starsselect']);
   }
 
 }

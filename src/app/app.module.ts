@@ -6,7 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Services
 import { UsersService } from './data-component/users/users.service';
+import { ConstellationsService } from './data-component/constellations/constellations.service';
 
 // Bootstrap Javascript Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -33,19 +35,54 @@ import { SplashExploreComponent } from './splash-explore/splash-explore.componen
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
-// Material Design Modul
+// Guards
+import { AuthGuard } from './auth.guard';
 
+/*
+
+              ROUTERS
+          Routes component
+
+*/
 const appRoutes:Routes = [
-  { path: '', component: WelcomePageComponent },
+  { path: '', 
+    component: WelcomePageComponent
+  },
   { path: '404', component: LostPageComponent },
-  { path: 'login', component: LoginPageComponent, data: { state: 'login' } },
-  { path: 'register', component: RegisterPageComponent, data: { state: 'register' } },
-  { path: 'aboutus', component: AboutusPageComponent, data: { state: 'aboutus' } },
-  { path: 'starsselect', component: StarsSelectionComponent, data: { state: 'starsselect' } },
-  { path: 'humantechnology', component: HumanTechnologyComponent, data: { state: 'humantechnology' } },
-  { path: 'exploration' , component: SplashExploreComponent, data: { state: 'exploration' }},
-  { path: 'loading', component: LoadingScreenComponent, data: { state: 'loading' } },
-  { path: 'dashboard', component: DashboardPageComponent, data: { state: 'dashboard' } }
+  { path: 'login', 
+    component: LoginPageComponent, 
+    data: { state: 'login' }
+  },
+  { path: 'register', 
+    component: RegisterPageComponent, 
+    data: { state: 'register' }
+  },
+  { path: 'starsselect', 
+    component: StarsSelectionComponent, 
+    data: { state: 'starsselect' } 
+  },
+  { path: 'aboutus', 
+    component: AboutusPageComponent, 
+    data: { state: 'aboutus' } 
+  },
+  { path: 'exploration' , 
+    component: SplashExploreComponent, 
+    data: { state: 'exploration' }
+  },
+  { path: 'loading', 
+    component: LoadingScreenComponent, 
+    data: { state: 'loading' } 
+  },
+  { path: 'dashboard', 
+    component: DashboardPageComponent, 
+    data: { state: 'dashboard'},
+    canActivate: [AuthGuard]
+  },
+  { path: 'humantechnology', 
+    component: HumanTechnologyComponent, 
+    data: { state: 'humantechnology' },
+    canActivate: [AuthGuard] 
+  }
 ];
 
 @NgModule({
@@ -79,7 +116,9 @@ const appRoutes:Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    ConstellationsService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

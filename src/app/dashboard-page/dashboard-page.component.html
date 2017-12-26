@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" [@viewDown]="navIndicator">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="/" class="navbar-brand">Astrokid<br>
+      <a ng-href="/" class="navbar-brand">Astrokid<br>
         <h4 [@viewDown]="textIndicator">Explore our universe</h4>
       </a>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -13,7 +13,7 @@
     <div class="navbar-collapse collapse" id="myNavbard">
       <ul class="nav navbar-nav navbar-right myNav">
           <li><a href="#">Profile</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a (click)="logout()">Logout</a></li>
       </ul>          
     </div>
   </div>
@@ -148,8 +148,8 @@
 </div>
 <div class="jumbotron constellation_section">
   <div class="container">
-    <h1 class="title">Orion is my constellation</h1>
-    <h2 class="call">The Hunter</h2>
+    <h1 class="title">{{myConstellation.name}} is my constellation</h1>
+    <h2 class="call">{{myConstellation.knownas}}</h2>
     <hr class="line_sec">
     <div class="row">
       <div class="col-md-4 stars_desc">
@@ -160,26 +160,7 @@
       <div class="col-md-8 stars_desc">
         <div class="container">
           <p>
-            Orion atau Waluku ("Bintang Bajak"), 
-            adalah suatu rasi bintang yang sering 
-            disebut-sebut sebagai sang Pemburu. 
-            Rasi ini mungkin merupakan rasi yang paling 
-            terkenal dan mudah dikenali di angkasa. 
-            Orang Jawa mengenal bagian deretan tiga bintang 
-            sabuk (ζ,ε, dan δ) dan deretan tiga bintang
-             pedang (M43, M42, dan ι) sebagai deretan 
-             bintang Belantik atau Beluku. 
-             Bintang-bintang terangnya terletak pada 
-             ekuator langit dan terlihat dari 
-             seluruh dunia, sehingga membuat rasi 
-             ini dikenal secara luas.
-            
-            Orion sang pemburu berdiri di sebelah 
-            sungai Eridanus dengan dua anjing pemburunya, 
-            Canis Major (anjing besar) dan Canis Minor 
-            (anjing kecil), melawan Taurus, sang kerbau. 
-            Buruan lainnya seperti Lepus, si kelinci, 
-            juga ada di dekatnya.
+            {{myConstellation.description}}
           </p>
         </div>
       </div>

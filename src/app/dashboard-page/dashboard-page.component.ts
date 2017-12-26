@@ -9,6 +9,8 @@ import {
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Route } from '@angular/router/src/config';
 import 'rxjs/add/operator/switchMap';
+import { UsersService } from '../data-component/users/users.service';
+import { ConstellationsService } from '../data-component/constellations/constellations.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -38,10 +40,13 @@ import 'rxjs/add/operator/switchMap';
 })
 export class DashboardPageComponent implements OnInit {
   private textIndicator: String;
+  private userData: any;
   private navIndicator: String;
-  constructor(public el: ElementRef) {
+  private myConstellation: any = {};
+  constructor(public el: ElementRef, private user: UsersService, private router: Router, private constellation: ConstellationsService) {
     this.textIndicator = 'text_show';
     this.navIndicator = 'nav_fixed';
+    this.userData = user.getUserData();
   }
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
@@ -55,6 +60,21 @@ export class DashboardPageComponent implements OnInit {
     }
   }
   ngOnInit() {
+    console.log(this.userData);
+    this.getMyConstellation();
+  }
+  logout() {
+    this.user.logout();
+    this.router.navigate(['/']);
+  }
+  getMyConstellation() {
+    this.constellation.getConstellationById(this.userData.data.constellation)
+      .subscribe(
+        data => {
+          this.myConstellation = JSON.parse(data.text());
+          console.log(this.myConstellation);
+        }
+      )
   }
 
 }

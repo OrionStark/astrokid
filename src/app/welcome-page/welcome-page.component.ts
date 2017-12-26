@@ -92,6 +92,9 @@ export class WelcomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('userdata') != null) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   goToHumanTech(){
